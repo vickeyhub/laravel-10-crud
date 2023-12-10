@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Rules\LimitRule;
+use App\Http\Requests\userRequest;
 
 class UserController extends Controller
 {
@@ -17,17 +17,8 @@ class UserController extends Controller
         return view('createUser');
     }
 
-    public function createNewUser(Request $request)
+    public function createNewUser(userRequest $request)
     {
-        $validate = $request->validate([
-            'name' => 'required',
-            'mobileNumber' => ['required','numeric', new LimitRule],
-            'email' => 'required|email',
-            'password' => 'required',
-            'confirmPassword' => 'required',
-        ],
-        [
-            'mobileNumber.required' => 'mobile number digits me chahiye mere ko'
-        ]);
+        dd();
     }
 }

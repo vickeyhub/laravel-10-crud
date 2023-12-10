@@ -8,34 +8,46 @@
         </div>
 
         <div id="user-form" class="user-form">
-            <form action="{{url('createUser')}}" method="post" class="form">
+            <form action="{{ url('createUser') }}" method="post" class="form">
                 @csrf
                 <div class="row">
                     <div class="form-group mb-2 col-md-6">
                         <label for="name">Full Name</label>
-                        <input class="input form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{ old('name')}}" placeholder="Full Name">
+                        <input class="input form-control @error('name') is-invalid @enderror" type="text" name="name"
+                            value="{{ old('name') }}" placeholder="Full Name">
                         @error('name')
-                            <small class="text-danger">{{ $message }}</small>
+                        <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group mb-2 col-md-6">
                         <label>Mobile</label>
-                        <input class="input form-control @error('mobileNumber') is-invalid @enderror" type="tel" name="mobileNumber" value="{{ old('mobileNumber')}}" placeholder="Mobile No.">
+                        <input class="input form-control @error('mobileNumber') is-invalid @enderror" type="tel"
+                            name="mobileNumber" value="{{ old('mobileNumber') }}" placeholder="Mobile No.">
                         @error('mobileNumber')
                         <small class="text-danger">{{ $message }}</small>
-                    @enderror
+                        @enderror
                     </div>
                     <div class="form-group mb-2 col-md-12">
                         <label>Email</label>
-                        <input class="input form-control" type="email" name="email" placeholder="Email">
+                        <input class="input form-control @error('email') is-invalid @enderror" type="email" name="email"
+                            placeholder="Email" value="{{ old('email') }}">
+                            @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
                     </div>
                     <div class="form-group mb-2 col-md-6">
                         <label>Password</label>
-                        <input class="input form-control" type="password" name="password" placeholder="********">
+                        <input class="input form-control @error('password') is-invalid @enderror" type="password" name="password" placeholder="Password" value="{{ old('password') }}">
+                        @error('password')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="form-group mb-2 col-md-6">
                         <label>Confirm Password</label>
-                        <input class="input form-control" type="password" name="confirmPassword" placeholder="********">
+                        <input class="input form-control @error('confirmPassword') is-invalid @enderror" type="password" name="confirmPassword" placeholder="Confirm Password" value="{{ old('confirmPassword')}}">
+                        @error('confirmPassword')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="form-group col-md-6">
                         <button type="submit" class="btn btn-primary">Create</button>
@@ -44,13 +56,13 @@
                 </div>
             </form>
             {{-- @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
             @endif --}}
         </div>
     </div>

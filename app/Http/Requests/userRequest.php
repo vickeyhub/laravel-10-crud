@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\LimitRule;
+
 
 class userRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class userRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,11 @@ class userRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'mobileNumber' => ['required','numeric', new LimitRule],
+            'email' => 'required|email',
+            'password' => 'required|gte:8',
+            'confirmPassword' => 'required|same:password',
         ];
     }
 }
