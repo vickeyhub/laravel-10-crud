@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Rules\LimitRule;
 
 class UserController extends Controller
 {
@@ -20,15 +21,13 @@ class UserController extends Controller
     {
         $validate = $request->validate([
             'name' => 'required',
-            'mobileNumber' => 'required|numeric',
+            'mobileNumber' => ['required','numeric', new LimitRule],
             'email' => 'required|email',
             'password' => 'required',
             'confirmPassword' => 'required',
         ],
         [
             'mobileNumber.required' => 'mobile number digits me chahiye mere ko'
-        ]
-    );
-        return $request;
+        ]);
     }
 }
